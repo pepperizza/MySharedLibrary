@@ -17,7 +17,7 @@ class SonarQubeUtils implements Serializable {
         steps.echo "=== Avvio scansione Sonar per repo: ${repoName} ==="
 
         steps.stage("Checkout") {
-            steps.git url: "https://github.com/spindox/${repoName}.git", branch: "main"
+            steps.git url: "https://github.com/pepperizza/${repoName}.git", branch: "main"
         }
 
         steps.stage("Sonar Scanner") {
@@ -26,7 +26,7 @@ class SonarQubeUtils implements Serializable {
               sonar-scanner.bat ^
               -Dsonar.projectKey=${repoName} ^
               -Dsonar.sources=. ^
-              -Dsonar.host.url=https://sonar.spindox.it ^
+              -Dsonar.host.url=%SONAR_HOST_URL% ^
               -Dsonar.login=%SONAR_TOKEN%
           """
         }
