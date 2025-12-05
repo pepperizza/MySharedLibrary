@@ -17,7 +17,11 @@ class SonarQubeUtils implements Serializable {
         steps.echo "=== Avvio scansione Sonar per repo: ${repoName} ==="
 
         steps.stage("Checkout") {
-            steps.git url: "https://github.com/pepperizza/${repoName}.git", branch: "main"
+            steps.echo "DEBUG: URL = https://github.com/pepperizza/${repoName}.git"
+            steps.git(
+                url: "https://github.com/pepperizza/${repoName}.git",
+                branch: "main"
+            )
         }
 
         steps.stage("Sonar Scanner") {
